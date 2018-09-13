@@ -1,0 +1,104 @@
+
+const ask=[{
+  id:"0",
+  question:"what is 8x1?",
+  answers:["9","10","3","8"],
+  correct:"3"},
+           {
+             id:"1",
+             question:"what is 2x1?",
+             answers:["4","2","6","4"],
+             correct:"1"},
+           {
+             id:"2",
+             question:"what is 3x1?",
+             answers:["0","4","3","9"],
+             correct:"2"},
+           {
+             id:"3",
+             question:"what is 6x2?",
+             answers:["12","2","6","4"],
+             correct:"0"},
+           {
+             id:"4",
+             question:"what is 6x3?",
+             answers:["18","21","12","8"],
+             correct:"0"},
+           {
+             id:"5",
+             question:"what is 7x3?",
+             answers:["0","2","21","9"],
+             correct:"2"},
+           {
+             id:"6",
+             question:"what is 12x1?",
+             answers:["29","32","25","12"],
+             correct:"3"},
+           {
+             id:"7",
+             question:"what is 92x1?",
+             answers:["92","14","19","29"],
+             correct:"0"}
+          ]
+
+function Question(props) {
+  
+  return(
+    props.ask.map((ask)=>
+                  <div >
+                    <h1  key={ask.question}>{ask.question}</h1>
+                    <div className="buton-grp">{ask.answers.map((item,index)=> <button className="myButtons" id={ask.id+"-"+index}  onClick={() => 
+                                                                  
+                                                                  props.clickHandler(ask.id+"-"+index,ask.id,ask.correct,index)} key={index}>{item}</button>)}</div>
+                  </div>)
+                 )                       
+    }
+
+function Result(props) {
+  return (
+    <div className="Side">
+      <h3>Correct answers:{props.correct}</h3>
+      <h3>Incorrect answers:{props.incorrect}</h3>
+    </div>
+  );
+};
+
+class MyApp extends React.Component {
+  constructor(props) {
+    super(props);
+    // var style={color:blue};    
+    this.state = {correct: 0 , incorrect:0};
+  }
+
+  clickHandler= (id,questionId,correctAnswer,index)=>{
+    const QC= questionId+"-"+correctAnswer;
+    const QI= questionId+"-"+index;
+
+
+    if (id==QI)
+       
+        for (i=0;i<4;i++){
+          const X=i;  
+          $('#'+questionId+'-'+X).prop("disabled",true);}
+
+    if (id==QC){      
+       $('#'+questionId+'-'+index).css('backgroundColor','Green');
+      this.setState({correct:this.state.correct+1})
+      
+    }
+    else {
+      $('#'+questionId+'-'+index).css('backgroundColor','Red');
+      this.setState({incorrect:this.state.incorrect+1})
+    }
+
+  }
+  render(){
+
+    return(
+      <div>
+        <Question ask={ask} clickHandler={this.clickHandler} />
+        <Result correct={this.state.correct} incorrect={this.state.incorrect}/>
+      </div>)}
+}
+
+ReactDOM.render(<MyApp/>, document.getElementById("root"));
