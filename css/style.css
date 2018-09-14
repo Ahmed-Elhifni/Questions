@@ -1,30 +1,44 @@
+@media only screen and (max-width:575px) {
+  .Side{
+    font-size:70% !important;
+  }
+  button{
+    width:5em !important;
+  }
+}
+
+html{
+  background-color: #001f3f;
+  color:#ffdc00;
+}
 button{
-  width:100%;
-  //height:100px;
+  width:10em;
+  background-color: #0074d9;
   display:block;
   float:top;
   clear:left;
   font-size:30px;
- border-radius:10px;
+  border-radius:10px;
+  padding: 4px;
  }
 h1{
-//  text-align:center;
+
   clear:left;
   margin-left:0.2em;
 }
 .Side{
   display:block;
-  font-size:15px;
+  font-size:140%;
   position:fixed;
   bottom: 0;
     right: 0;
-    
-    border: 3px solid blue;  
+  padding: 1%;
+    border: 3px solid #0074d9;
 }
 .buton-grp{
   width:40%;
   float:left;
   padding:30px;
   clear:left;
-  
+
 }
